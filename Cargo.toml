@@ -4,6 +4,7 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
+tokio = { version = "1.39.1", features = ["full"] }
 minijinja-embed = "2.1.1"
 minijinja = {version = "2.1.1", features = ["preserve_order"]}
 rust-embed = "8.5.0"
@@ -15,6 +16,8 @@ thiserror = "1.0.63"
 axum = "0.7.5"
 axum-extra = { version = "0.9.3", features = ["cookie"] }
 reqwest = { version = "0.12.5", features = ["stream", "json"] }
+utoipa = { version = "4.2.3", features = ["axum_extras"] }
+utoipa-swagger-ui = { version = "7.1.0", features = ["axum"] }
 
 [build-dependencies]
 minijinja-embed = "2.1.1"

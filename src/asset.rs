@@ -35,6 +35,6 @@ async fn static_handler(uri: Uri) -> impl IntoResponse {
     StaticFile(path)
 }
 
-pub fn base2_assets_router<T>() -> Router<T> {
+pub fn assets_router<T>() -> Router<T> {
     Router::new().route("/assets/*file", get(static_handler)).with_state(())
 }

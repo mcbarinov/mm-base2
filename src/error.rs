@@ -8,6 +8,9 @@ pub enum Error {
 
     #[error(transparent)]
     Reqwest(#[from] reqwest::Error),
+
+    #[error(transparent)]
+    Io(#[from] std::io::Error),
 }
 
 impl IntoResponse for Error {
