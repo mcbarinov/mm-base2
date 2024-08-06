@@ -1,6 +1,10 @@
+use axum::response::Html;
 use chrono::DateTime;
 use minijinja::{Environment, Value};
 use serde::de::Error;
+use serde::Serialize;
+
+use crate::HtmlResult;
 
 pub fn init_jinja_env() -> Environment<'static> {
     let mut env = Environment::new();
@@ -30,4 +34,10 @@ fn dt_filter(value: Value) -> Result<String, minijinja::Error> {
             .to_string();
         Ok(res)
     }
+}
+
+pub fn render_template<S: Serialize>(env: &Environment, template_name: &str, context: S) -> HtmlResult {
+    let tmpl = env.get_template(template_name)?;
+    let content = tmpl.render(context)?;
+    Ok(Html(content))
 }
