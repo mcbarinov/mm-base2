@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config.app_name }}</title>
+    <link rel="stylesheet" href="/assets/pico.amber.css">
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+
+<body class="container">
+
+<header>
+    <nav>
+        <ul>
+            <li><strong>{{ config.app_name }}</strong></li>
+            {% for path,title in config.main_menu | items %}
+            <li><a href="{{ path }}">{{ title }}</a></li>
+            {% endfor %}
+            <li><a href="/swagger">swagger</a></li>
+            <li><a href="/auth/logout">logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content -%}
+    {%- endblock %}
+</main>
+
+<footer>v{{ config.app_version }}, server time: {{ now() | datetimeformat(format="iso") }}</footer>
+</body>
+</html>
