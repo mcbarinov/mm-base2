@@ -11,6 +11,9 @@ pub enum Error {
 
     #[error(transparent)]
     Io(#[from] std::io::Error),
+
+    #[error("app error: {0}")]
+    App(String),
 }
 
 impl IntoResponse for Error {

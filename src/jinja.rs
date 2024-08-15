@@ -4,14 +4,15 @@ use minijinja::{Environment, Value};
 use serde::de::Error;
 use serde::Serialize;
 
-use crate::HtmlResult;
+use crate::Config;
 
-pub fn init_jinja_env() -> Environment<'static> {
+pub fn init_jinja_env(config: &Config) -> Environment<'static> {
     let mut env = Environment::new();
     minijinja_embed::load_templates!(&mut env);
     env.add_filter("none", none_filter);
     env.add_filter("dt", dt_filter);
     env.add_global("confirm", Value::from_safe_string(r#" onclick="return confirm('sure?')" "#.to_string()));
+    env.add_global("config", Value::from_serialize(config));
     env
 }
 
@@ -36,7 +37,7 @@ fn dt_filter(value: Value) -> Result<String, minijinja::Error> {
     }
 }
 
-pub fn render_template<S: Serialize>(env: &Environment, template_name: &str, context: S) -> HtmlResult {
+pub fn render_template<S: Serialize>(env: &Environment, template_name: &str, context: S) -> Result<Html<String>, crate::Error> {
     let tmpl = env.get_template(template_name)?;
     let content = tmpl.render(context)?;
     Ok(Html(content))
