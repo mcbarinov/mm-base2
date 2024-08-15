@@ -4,14 +4,14 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
-tokio = { version = "1.39.1", features = ["full"] }
-minijinja-embed = "2.1.1"
-minijinja = {version = "2.1.1", features = ["preserve_order"]}
+tokio = { version = "1.39.2", features = ["full"] }
+minijinja-embed = "2.1.2"
+minijinja = {version = "2.1.2", features = ["preserve_order"]}
 rust-embed = "8.5.0"
 mime_guess = "2.0.5"
 chrono = "0.4.38"
-serde = { version = "1.0.204", features = ["derive"] }
-serde_json = "1.0.122"
+serde = { version = "1.0.207", features = ["derive"] }
+serde_json = "1.0.125"
 thiserror = "1.0.63"
 axum = "0.7.5"
 axum-extra = { version = "0.9.3", features = ["cookie"] }
@@ -22,7 +22,9 @@ utoipa-swagger-ui = { version = "7.1.0", features = ["axum"] }
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter", "json"] }
 tracing-appender = "0.2.3"
-
+dotenv = "0.15.0"
+config = { version = "0.14.0", features = ["preserve_order"] }
+indexmap = "2.4.0"
 
 [build-dependencies]
-minijinja-embed = "2.1.1"
+minijinja-embed = "2.1.2"
