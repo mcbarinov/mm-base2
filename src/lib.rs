@@ -3,7 +3,7 @@ use axum::Json;
 use serde_json::Value;
 
 pub use config::Config;
-pub use error::Error;
+pub use error::{Error, Result};
 pub use jinja::init_jinja_env;
 pub use log::init_tracing;
 pub use router::router_without_state;
@@ -21,6 +21,7 @@ mod router;
 mod state;
 pub mod system;
 
-pub type JsonResult = Result<Json<Value>, Error>;
-pub type HtmlResult = Result<Html<String>, Error>;
-pub type RedirectResult = Result<Redirect, Error>;
+pub type PlainTextResult = Result<String>;
+pub type JsonResult = Result<Json<Value>>;
+pub type HtmlResult = Result<Html<String>>;
+pub type RedirectResult = Result<Redirect>;
